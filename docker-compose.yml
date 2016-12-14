@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+  node:
+    build: node
+    ports:
+      - 8888:8888
+    volumes:
+          - ./node/src:/usr/app/src
+
+  elasticsearch:
+    image: elasticsearch:5
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - ./elasticsearch/data:/usr/share/elasticsearch/data

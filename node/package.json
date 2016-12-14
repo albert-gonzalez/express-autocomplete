@@ -1,0 +1,15 @@
+{
+  "name": "express-autocomplete",
+  "version": "1.0.0",
+  "description": "Autocomplete with ExpressJs",
+  "author": "albert.glez.mld@gmail.com",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "nodemon src/main.js"
+  },
+  "dependencies": {
+    "express": "^4.14.0"
+  },"devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
