@@ -1,14 +1,15 @@
 'use strict';
 
 const express = require('express');
-
-// Constants
+const apiController = require('./controller/api');
 const PORT = 8888;
-
-// App
 const app = express();
-app.get('/', function (req, res) {
-    res.send('It works!\n');
+
+apiController.initRouting(app);
+
+app.use(function (err, req, res) {
+    console.error(err.stack);
+    res.status(500).send({'error': err.message});
 });
 
 app.listen(PORT);

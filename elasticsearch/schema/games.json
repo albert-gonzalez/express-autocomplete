@@ -1,0 +1,112 @@
+{
+  "settings": {
+    "number_of_shards": 2,
+    "number_of_replicas": 1,
+    "analysis": {
+      "filter": {
+        "autocomplete_filter": {
+          "type": "edgeNGram",
+          "min_gram": 2,
+          "max_gram": 20
+        },
+        "en_stemmer" : {
+          "type" : "stemmer",
+          "name" : "light_english"
+        },
+        "en_stopwords": {
+          "type":       "stop",
+          "stopwords": "_english_"
+        }
+      },
+      "analyzer": {
+        "index": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "trim",
+            "standard",
+            "lowercase",
+            "en_stopwords",
+            "en_stemmer",
+            "asciifolding"
+          ],
+          "char_filter":  [ "html_strip" ]
+        },
+        "search": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "trim",
+            "standard",
+            "lowercase",
+            "en_stopwords",
+            "en_stemmer",
+            "asciifolding"
+          ]
+        },
+        "index_autocomplete": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "en_stopwords",
+            "en_stemmer",
+            "autocomplete_filter"
+          ],
+          "char_filter":  [ "html_strip" ]
+        },
+        "search_autocomplete": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "en_stopwords",
+            "en_stemmer"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "game": {
+      "_all": {
+        "analyzer": "index",
+        "search_analyzer": "search"
+      },
+      "include_in_all": false,
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string",
+          "include_in_all": true,
+          "fields": {
+            "name": {
+              "type": "string",
+              "analyzer": "index",
+              "search_analyzer": "search"
+            },
+            "autocomplete": {
+              "type": "text",
+              "analyzer": "index_autocomplete",
+              "search_analyzer": "search_autocomplete"
+            }
+          }
+        },
+        "description": {
+          "type": "string",
+          "analyzer": "index",
+          "search_analyzer": "search",
+          "include_in_all": true
+        },
+        "site_detail_url": {
+          "type": "string",
+          "index": "no"
+        }
+      }
+    }
+  }
+}
