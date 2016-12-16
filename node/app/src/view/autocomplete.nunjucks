@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Games Autocomplete</title>
+    </head>
+    <body>
+        <div class="row">
+            <div class="column">
+                <h1>Games Autocomplete Example</h1>
+                <div id="game-list" class="row">
+                    <div class="column small-12">
+                      <label>Search a game:
+                        <input class="large" type="text" placeholder="Your search"/>
+                      </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="/build.js"></script>
+</html>

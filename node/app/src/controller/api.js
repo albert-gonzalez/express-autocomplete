@@ -13,7 +13,7 @@ function initRouting(app) {
             host: 'elasticsearch:9200'
         });
 
-        const games = require('./data/games.json');
+        const games = require('../../data/games.json');
         let count = 0;
         for (let game of games) {
             client.create({

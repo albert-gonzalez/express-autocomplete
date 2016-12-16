@@ -6,7 +6,7 @@ services:
     ports:
       - 8888:8888
     volumes:
-          - ./node/src:/usr/app/src
+          - ./node/app:/usr/autocomplete/app
 
   elasticsearch:
     image: elasticsearch:5
