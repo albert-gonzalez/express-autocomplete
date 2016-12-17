@@ -2,7 +2,8 @@
   "name": "express-autocomplete",
   "version": "1.0.0",
   "description": "Autocomplete with ExpressJs",
-  "author": "albert.glez.mld@gmail.com",
+  "author": "Albert Gonzalez (albert.glez.mld@gmail.com)",
+  "license": "MIT",
   "main": "src/main.js",
   "scripts": {
     "start": "nodemon app/src/main.js",

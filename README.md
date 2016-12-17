@@ -1,6 +1,6 @@
 # Express Autocomplete Server
 
-Server side Autocomplete example with Express.js, Elasticsearch and Docker. Frontend side done with vue.js and foundation. The example game list is from [GiantBomb](http://www.giantbomb.com/)
+Server side Autocomplete example with Express.js, Elasticsearch and Docker. Frontend side done with vue.js and Foundation. The example game list is from [GiantBomb](http://www.giantbomb.com/)
 
 ## Install
 
