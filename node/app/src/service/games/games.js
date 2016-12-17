@@ -6,36 +6,57 @@ function transformHitsToGames(hits) {
     }));
 }
 
-exports.loadGamesFromJson = function (games) {
-    const elasticsearch = require('elasticsearch');
-    const client = new elasticsearch.Client({
-        host: 'elasticsearch:9200'
-    });
-
-    let count = 0;
-    for (let game of games) {
-        client.create({
-            index: 'games',
-            type: 'game',
-            id: game.id,
-            body: game
-        });
-
-        count++;
+module.exports = class GamesService {
+    constructor(indexerClient) {
+        this.indexerClient = indexerClient;
     }
 
-    return count;
-};
+    loadGamesFromJson(games) {
+        let count = 0;
+        for (let game of games) {
+            this.indexerClient.create({
+                index: 'games',
+                type: 'game',
+                id: game.id,
+                body: game
+            });
 
-exports.autocompleteGames = function (query) {
-    const elasticsearch = require('elasticsearch');
-    const client = new elasticsearch.Client({
-        host: 'elasticsearch:9200'
-    });
+            count++;
+        }
 
-    return client.search({
-        q: query,
-        index: 'games',
-        type: 'game'
-    }).then((data) => transformHitsToGames(data.hits.hits));
+        return count;
+    }
+
+    autocomplete(query) {
+        return this.indexerClient.search({
+            index: 'games',
+            type: 'game',
+            body: {
+                "query": {
+                    "bool": {
+                        "should": [
+                            {
+                                "match": {
+                                    "name.autocomplete": {
+                                        "query": query,
+                                        "operator": "and",
+                                        "boost": 3
+                                    }
+                                }
+                            },
+                            {
+                                "match": {
+                                    "description": {
+                                        "query": query,
+                                        "operator": "and"
+                                    }
+                                }
+                            }
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+            }
+        }).then((data) => transformHitsToGames(data.hits.hits));
+    }
 };

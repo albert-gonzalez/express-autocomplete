@@ -1,3 +1,4 @@
 .idea/
 elasticsearch/data/
 node/app/dist
+node_modules
