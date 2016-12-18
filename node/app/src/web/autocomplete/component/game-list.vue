@@ -23,7 +23,6 @@ import qwest from "qwest";
 import { debounce } from "lodash";
 
 function makeRequest(event) {
-console.log(event);
   qwest.get(`/api/games/autocomplete?q=${event.target.value}`)
     .then((xhr, response) => {
       this.games = response.data;
@@ -39,7 +38,7 @@ export default {
   methods: {
     search: debounce(function (event) {
       makeRequest.bind(this)(event);
-    }, 500)
+    }, 300)
   }
 }
 </script>
