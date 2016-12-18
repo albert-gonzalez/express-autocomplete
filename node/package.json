@@ -9,7 +9,7 @@
     "start": "nodemon app/src/main.js",
     "dev": "cross-env NODE_ENV=development webpack --progress --colors --watch",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "test": "mocha 'app/test/**/*.js'"
+    "test": "mocha 'app/test/**/*.test.js'"
   },
   "dependencies": {
     "express": "^4.14.0",

@@ -3,7 +3,7 @@ const randomWord = require('random-word');
 
 const requests = [];
 
-for(let i = 0; i < 200; i++) {
+for(let i = 0; i < 800; i++) {
     requests.push({
         method: 'get',
         path: `/api/games/autocomplete?q=${randomWord()}`
@@ -12,8 +12,7 @@ for(let i = 0; i < 200; i++) {
 
 const hulken_options = {
     targetUrl: 'http://localhost:8888',
-    requestsArray: JSON.stringify(requests),
-    numberOfHulkenAgents: 4
+    requestsArray: JSON.stringify(requests)
 };
 
 hulken.run(function(stats){
