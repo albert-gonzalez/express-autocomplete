@@ -8,6 +8,7 @@ Server side Autocomplete example with Express.js, Elasticsearch and Docker. Fron
 * `cd name-of-the-project-folder`
 * Run the containers with `docker-compose up`
 * Create the elasticsearch schema and load the documents with `elasticsearch/script/init.sh`
+* Build the frontend app with `docker-compose exec node npm run build`
 * open `http://localhost:8888` in the browser to try the example
 
 ## Server Endpoints
